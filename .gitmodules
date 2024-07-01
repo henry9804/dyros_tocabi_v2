@@ -12,4 +12,4 @@
 	url = https://github.com/saga0619/tocabi_ecat
 [submodule "tocabi_lib"]
 	path = tocabi_lib
-	url = https://github.com/saga0619/tocabi_lib
+	url = https://github.com/henry9804/tocabi_lib.git
