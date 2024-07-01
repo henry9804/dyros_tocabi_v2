@@ -39,6 +39,10 @@
         <default class="csf_11_100_2xh_f">
             <joint damping="0.0029" frictionloss="1.5"/>
         </default>  <!-- rated torque = 5 Nm -->
+        
+        <default class="ksy_joint">
+            <joint damping="0.01" frictionloss="0.01"/>
+        </default>  <!-- ksy hand -->
     </default>
 
 

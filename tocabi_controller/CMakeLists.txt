@@ -77,9 +77,10 @@ include_directories(
 add_library(${PROJECT_NAME}_lib
   src/state_manager.cpp
   src/tocabi_controller.cpp
+  src/shhand_controller.cpp
 )
 
-link_directories(${CATKIN_DEVEL_PREFIX}/lib})
+link_directories(${CATKIN_DEVEL_PREFIX}/lib)
 
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
@@ -94,6 +95,8 @@ add_executable(shutdown src/shutdown.cpp)
 
 add_executable(shm_reset src/shm_manager.cpp)
 
+add_executable(shhand_controller src/shhand_controller.cpp)
+
 target_link_libraries(${PROJECT_NAME}_lib
   ${catkin_LIBRARIES}
   ${tocabi_cc_LIBRARIES}
@@ -103,6 +106,11 @@ target_link_libraries(${PROJECT_NAME}_lib
 
 ## Specify libraries to link a library or executable target against
 target_link_libraries(${PROJECT_NAME}
+  ${catkin_LIBRARIES}
+  ${PROJECT_NAME}_lib
+)
+
+target_link_libraries(shhand_controller 
   ${catkin_LIBRARIES}
   ${PROJECT_NAME}_lib
 )
