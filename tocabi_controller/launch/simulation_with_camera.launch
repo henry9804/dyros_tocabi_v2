@@ -19,7 +19,7 @@
     </group>
     <group if="$(arg hand)">
         <!--<param name="mujoco_ros/model_file" type="string" value="$(find tocabi_description)/mujoco_model/dyros_tocabi_with_redhands.xml" /> -->
-        <param name="mujoco_ros/model_file" type="string" value="$(find tocabi_description)/mujoco_model/dyros_tocabi_with_object_with_shhand.xml" />
+        <param name="mujoco_ros/model_file" type="string" value="$(find tocabi_description)/mujoco_model/dyros_tocabi_with_object_with_syhand.xml" />
     </group>
     <group unless="$(arg hand)">
         <param name="mujoco_ros/model_file" type="string" value="$(find tocabi_description)/mujoco_model/dyros_tocabi_with_object_2024winter.xml" />
@@ -35,7 +35,7 @@
     <group if="$(arg controller)">
         <node name="tocabi_controller" pkg="tocabi_controller" type="tocabi_controller" output="screen" required="true" launch-prefix="bash -c 'sleep $(arg node_start_delay); $0 $@'"/>
         <group if="$(arg hand)">
-            <node name="shhand_controller" pkg="tocabi_controller" type="shhand_controller" output="screen" required="true" launch-prefix="bash -c 'sleep $(arg node_start_delay); $0 $@' "/>
+            <node name="syhand_controller" pkg="tocabi_controller" type="syhand_controller" output="screen" required="true" launch-prefix="bash -c 'sleep $(arg node_start_delay); $0 $@' "/>
         </group>
     </group>
 

@@ -1,4 +1,4 @@
-#include "tocabi_controller/shhand_controller.h"
+#include "tocabi_controller/syhand_controller.h"
 #include <iostream>
 
 void print_array(float* arr, int len){
@@ -8,11 +8,11 @@ void print_array(float* arr, int len){
     std::cout << std::endl;
 }
 
-SHhandController::SHhandController(ros::NodeHandle nh_){
+SYhandController::SYhandController(ros::NodeHandle nh_){
     std::cout << "initiate sh hand controller" << std::endl;
     
     // hand_state_pub = nh_.advertise<sensor_msgs::JointState>("/tocabi/handstates", 1);
-    hand_open_sub = nh_.subscribe<std_msgs::Int32>("/mujoco_ros_interface/hand_open", 1, &SHhandController::hand_open_callback, this);
+    hand_open_sub = nh_.subscribe<std_msgs::Int32>("/mujoco_ros_interface/hand_open", 1, &SYhandController::hand_open_callback, this);
 
     // hand_state_msgs.name.resize(HAND_DOF);
     // for(int i = 0; i < HAND_DOF; i++){
@@ -23,7 +23,7 @@ SHhandController::SHhandController(ros::NodeHandle nh_){
     // hand_state_msgs.effort.resize(HAND_DOF);
 }
 
-void *SHhandController::PubThread(){
+void *SYhandController::PubThread(){
     int pub_count = 0;
     while (true){
         pub_count++;
@@ -39,7 +39,7 @@ void *SHhandController::PubThread(){
     }
 }
 
-void SHhandController::oneFingerFlexionCalculation(float distance, float flex[]) {
+void SYhandController::oneFingerFlexionCalculation(float distance, float flex[]) {
     // Constants
     const float l_p = 0.028;
     const float h = 0.0025;
@@ -93,7 +93,7 @@ void SHhandController::oneFingerFlexionCalculation(float distance, float flex[])
     flex[3] = 0.8 * theta_mcp;
 }
 
-void SHhandController::kinematicsCalculation_RHand(float actuator_values[], float joint_values[]) {
+void SYhandController::kinematicsCalculation_RHand(float actuator_values[], float joint_values[]) {
     float DA11 = actuator_values[0];
     float DA12 = actuator_values[1];
     float DA21 = actuator_values[2];
@@ -127,7 +127,7 @@ void SHhandController::kinematicsCalculation_RHand(float actuator_values[], floa
     std::copy(finger_act, finger_act+4, joint_values+16);
 }
 
-void SHhandController::hand_open_callback(const std_msgs::Int32ConstPtr &msg){
+void SYhandController::hand_open_callback(const std_msgs::Int32ConstPtr &msg){
     std::cout << (msg->data ? "close" : "open") << std::endl;
 
     float sin_d = 0.027 + 0.01*msg->data;
@@ -145,12 +145,12 @@ void SHhandController::hand_open_callback(const std_msgs::Int32ConstPtr &msg){
 int main(int argc, char **argv)
 {
     // :: ROS CUSTUM :: initialize ros
-    ros::init(argc, argv, "shhand_controller");
+    ros::init(argc, argv, "syhand_controller");
     ros::NodeHandle nh("~");
 
-    SHhandController shhand_controller(nh);
+    SYhandController syhand_controller(nh);
     int shm_msg_id;
-    init_shm(shm_msg_key, shm_msg_id, &shhand_controller.shm_msgs_);
+    init_shm(shm_msg_key, shm_msg_id, &syhand_controller.shm_msgs_);
 
     // pthread_t pubThread;
     // pthread_attr_t pubattrs;
@@ -168,7 +168,7 @@ int main(int argc, char **argv)
     //     printf("attr pub setinheritsched failed ");
     // }
 
-    // auto error_code = pthread_create(&pubThread, &pubattrs, &SHhandController::PubStarter, &shhand_controller);
+    // auto error_code = pthread_create(&pubThread, &pubattrs, &SYhandController::PubStarter, &syhand_controller);
     // if (error_code){
     //     std::cout << error_code << ": ";
     //     printf("pub Thread create failed\n");
@@ -177,5 +177,5 @@ int main(int argc, char **argv)
 
     ros::spin();
 
-    deleteSharedMemory(shm_msg_id, shhand_controller.shm_msgs_);
+    deleteSharedMemory(shm_msg_id, syhand_controller.shm_msgs_);
 }

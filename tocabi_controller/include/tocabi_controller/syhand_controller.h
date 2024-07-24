@@ -1,5 +1,5 @@
-#ifndef SHHAND_CONTROLLER_H
-#define SHHAND_CONTROLLER_H
+#ifndef SYHAND_CONTROLLER_H
+#define SYHAND_CONTROLLER_H
 
 #include "shm_msgs.h"
 #include <cmath>
@@ -7,12 +7,12 @@
 #include <sensor_msgs/JointState.h>
 #include <std_msgs/Int32.h>
 
-class SHhandController {
+class SYhandController {
 public:
-    SHhandController(ros::NodeHandle nh_);
+    SYhandController(ros::NodeHandle nh_);
 
     void *PubThread();
-    static void *PubStarter(void *context) { return ((SHhandController *)context)->PubThread(); }
+    static void *PubStarter(void *context) { return ((SYhandController *)context)->PubThread(); }
 
     void oneFingerFlexionCalculation(float distance, float flex[]);
 

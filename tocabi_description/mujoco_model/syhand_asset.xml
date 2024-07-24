@@ -1,0 +1,29 @@
+<mujoco model="syhand_asset">
+
+    <mesh name="base_link" file="syhand/base_link.stl" scale="0.001 0.001 0.001" />
+    <mesh name="mcp2_1"    file="syhand/mcp2_1.stl" scale="0.001 0.001 0.001" />
+    <mesh name="pp2_1"     file="syhand/pp2_1.stl" scale="0.001 0.001 0.001" />
+    <mesh name="mp2_1"     file="syhand/mp2_1.stl" scale="0.001 0.001 0.001" />
+    <mesh name="dp2_1"     file="syhand/dp2_1.stl" scale="0.001 0.001 0.001" />
+    <mesh name="meta2_1"   file="syhand/meta2_1.stl" scale="0.001 0.001 0.001" />
+    <mesh name="meta1_1"   file="syhand/meta1_1.stl" scale="0.001 0.001 0.001" />
+    <mesh name="mcp1_1"    file="syhand/mcp1_1.stl" scale="0.001 0.001 0.001" />
+    <mesh name="pp1_1"     file="syhand/pp1_1.stl" scale="0.001 0.001 0.001" />
+    <mesh name="mp1_1"     file="syhand/mp1_1.stl" scale="0.001 0.001 0.001" />
+    <mesh name="dp1_1"     file="syhand/dp1_1.stl" scale="0.001 0.001 0.001" />
+    <mesh name="meta3_1"   file="syhand/meta3_1.stl" scale="0.001 0.001 0.001" />
+    <mesh name="mcp3_1"    file="syhand/mcp3_1.stl" scale="0.001 0.001 0.001" />
+    <mesh name="pp3_1"     file="syhand/pp3_1.stl" scale="0.001 0.001 0.001" />
+    <mesh name="mp3_1"     file="syhand/mp3_1.stl" scale="0.001 0.001 0.001" />
+    <mesh name="dp3_1"     file="syhand/dp3_1.stl" scale="0.001 0.001 0.001" />
+    <mesh name="meta4_1"   file="syhand/meta4_1.stl" scale="0.001 0.001 0.001" />
+    <mesh name="mcp4_1"    file="syhand/mcp4_1.stl" scale="0.001 0.001 0.001" />
+    <mesh name="pp4_1"     file="syhand/pp4_1.stl" scale="0.001 0.001 0.001" />
+    <mesh name="mp4_1"     file="syhand/mp4_1.stl" scale="0.001 0.001 0.001" />
+    <mesh name="dp4_1"     file="syhand/dp4_1.stl" scale="0.001 0.001 0.001" />
+    <mesh name="act1_1"    file="syhand/act1_1.stl" scale="0.001 0.001 0.001" />
+    <mesh name="act2_1"    file="syhand/act2_1.stl" scale="0.001 0.001 0.001" />
+    <mesh name="act3_1"    file="syhand/act3_1.stl" scale="0.001 0.001 0.001" />
+    <mesh name="act4_1"    file="syhand/act4_1.stl" scale="0.001 0.001 0.001" />
+
+</mujoco>

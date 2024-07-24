@@ -36,9 +36,10 @@
         <mesh name="head" file="head.STL" scale="0.001 0.001 0.001"/>
         <mesh name="hand" file="wrist2joint.STL" scale="0.001 0.001 0.001"/>
         <mesh name="Foot_Link" file="Foot_Link.STL"/>
+        <mesh name="mustard" file="objects/mustard.stl"/>
 
         <!-- for hand -->
-        <include file="sh_hand_asset.xml"/>
+        <include file="syhand_asset.xml"/>
 
 
         <!--texture type="skybox" builtin="gradient" width="128" height="128" rgb1="1 1 1" rgb2="0 0 0"/-->
@@ -56,28 +57,19 @@
         <light directional="true" diffuse=".5 .5 .5" pos="10 0 0" dir="-10 0 0"/>
 
         <body name="table_top_body">
-            <geom size="0.3 1.0 0.05" pos="0.6 0 0.85"  type="box"/>
+            <geom size="0.3 1.0 0.05" pos="0.65 0 0.85"  type="box"/>
             <body name="leg1">
-                <geom size="0.05 0.4" pos="0.4 -0.6 0.4" type="cylinder"/>
+                <geom size="0.05 0.4" pos="0.45 -0.6 0.4" type="cylinder"/>
             </body>
             <body name="leg2">
-                <geom size="0.05 0.4" pos="0.8 -0.6 0.4" type="cylinder"/>
+                <geom size="0.05 0.4" pos="0.85 -0.6 0.4" type="cylinder"/>
             </body>
             <body name="leg3">
-                <geom size="0.05 0.4" pos="0.4 0.6 0.4" type="cylinder"/>
+                <geom size="0.05 0.4" pos="0.45 0.6 0.4" type="cylinder"/>
             </body>
             <body name="leg4">
-                <geom size="0.05 0.4" pos="0.8 0.6 0.4" type="cylinder"/>
+                <geom size="0.05 0.4" pos="0.85 0.6 0.4" type="cylinder"/>
             </body>
-        </body>
-
-    
-        <body name="cup">
-            <geom size="0.05 0.1" pos="0.55 0.05 1.01" type="cylinder" rgba="0 0 1 1"/>
-        </body>
-        
-        <body name="cube">
-            <geom size="0.05 0.05 0.1" pos="0.75 -0.1 1.01" type="box" rgba="1 0 0 1"/>
         </body>
 
         <!--<body name="block">
@@ -355,9 +347,8 @@
                                                         <geom size="0.03 0.03 0.01" pos="0 0 -0.025" type="box" class="viz" rgba="0.20313 0.20313 0.20313 1" />
                                                         <site class="FTsensor" name="RH_FT" pos="0 0 -0.035"/>
                                                         <!-- for sh hand -->
-                                                        <!-- <body name="R_Wrist_2_Hand_Virtual_Link" pos="0 0 -0.035" quat="0.5 -0.5 -0.5 0.5"> -->
-                                                        <body name="R_Wrist_2_Hand_Virtual_Link" pos="0 0 -0.035" quat="0.7071068 -0.7071068 0 0">
-                                                            <include file="sh_right_hand.xml"/>
+                                                        <body name="R_Wrist_2_Hand_Virtual_Link" pos="0 0 -0.035" quat="0.5 -0.5 -0.5 0.5">
+                                                            <include file="syhand_right.xml"/>
                                                         </body>
                                                     </body>
                                                 </body>
@@ -371,6 +362,18 @@
                 </body>
             </body>
         </body>
+
+        <body name="cup">
+            <!-- <geom size="0.05 0.1" pos="0.55 0.05 1.01" type="cylinder" rgba="0 0 1 1"/> -->
+            <!-- <geom size="0.05 0.05 0.1" pos="0.55 -0.05 1.01" euler="0 0 0.7854" type="box" rgba="1 0 0 1"/> -->
+            <geom size="0.04 0.05 0.0025" type="box" pos="0.55 0.05 0.9025" rgba="1 1 1 0.5"/>
+            <geom type="mesh" mesh="mustard" pos="0.55 0.05 0.985" euler="0 0 1.5708" rgba="1 1 0 1"/>
+            <joint name="obj_vjoint_0" type="free"/>
+        </body>
+       
+        <!-- <body name="cube">
+            <geom size="0.05 0.05 0.1" pos="0.75 -0.1 1.01" type="box" rgba="1 0 0 1"/>
+        </body> -->
 
     </worldbody>
     <actuator>
@@ -414,7 +417,7 @@
         <motor name="R_Wrist2_Motor" joint="R_Wrist2_Joint" ctrlrange="-10 10"/>
 
         <!-- hand -->
-        <include file="sh_hand_actuator.xml"/>
+        <include file="syhand_actuator.xml"/>
     </actuator>
 
     <sensor>

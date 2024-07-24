@@ -1,4 +1,4 @@
-<mujoco model="sh_hand_actuator">
+<mujoco model="syhand_actuator">
     <position name="aa2_Motor"  joint="aa2"  ctrllimited="true" forcelimited="false" forcerange="-0.01 0.01" ctrlrange="-3 3" kp="1.0"/>
     <position name="mcp2_Motor" joint="mcp2" ctrllimited="true" forcelimited="false" forcerange="-0.01 0.01" ctrlrange="-3 3" kp="1.0"/>
     <position name="pip2_Motor" joint="pip2" ctrllimited="true" forcelimited="false" forcerange="-0.01 0.01" ctrlrange="-3 3" kp="1.0"/>

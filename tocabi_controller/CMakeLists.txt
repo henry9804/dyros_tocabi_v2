@@ -54,6 +54,8 @@ endif()
 IF(tocabi_cc_FOUND)
  message(" -- tocabi_cc found" )
    ADD_DEFINITIONS(-DCOMPILE_TOCABI_CC)
+   find_package(OpenCV REQUIRED)
+   include_directories(${OpenCV_INCLUDE_DIRS})
 ENDIF()
 
 IF(tocabi_avatar_FOUND)
@@ -77,7 +79,7 @@ include_directories(
 add_library(${PROJECT_NAME}_lib
   src/state_manager.cpp
   src/tocabi_controller.cpp
-  src/shhand_controller.cpp
+  src/syhand_controller.cpp
 )
 
 link_directories(${CATKIN_DEVEL_PREFIX}/lib)
@@ -95,7 +97,7 @@ add_executable(shutdown src/shutdown.cpp)
 
 add_executable(shm_reset src/shm_manager.cpp)
 
-add_executable(shhand_controller src/shhand_controller.cpp)
+add_executable(syhand_controller src/syhand_controller.cpp)
 
 target_link_libraries(${PROJECT_NAME}_lib
   ${catkin_LIBRARIES}
@@ -110,7 +112,7 @@ target_link_libraries(${PROJECT_NAME}
   ${PROJECT_NAME}_lib
 )
 
-target_link_libraries(shhand_controller 
+target_link_libraries(syhand_controller 
   ${catkin_LIBRARIES}
   ${PROJECT_NAME}_lib
 )

@@ -28,6 +28,7 @@
 #include "mujoco_ros_msgs/SimStatus.h"
 #include "mujoco_ros_msgs/JointSet.h"
 #include "tocabi_msgs/positionCommand.h"
+#include "tocabi_msgs/yhFTsensor.h"
 
 #include <fstream>
 
@@ -183,6 +184,9 @@ public:
 
     ros::Publisher hand_ft_pub_org_;
     std_msgs::Float32MultiArray hand_ft_org_msg_;
+
+    ros::Publisher ft_sensor_pub_;
+    tocabi_msgs::yhFTsensor ft_sensor_msg_;
 
     ros::Publisher hand_state_pub;
     sensor_msgs::JointState hand_state_msgs;

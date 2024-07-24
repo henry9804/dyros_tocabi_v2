@@ -100,8 +100,10 @@ StateManager::StateManager(DataContainer &dc_global) : dc_(dc_global), rd_gl_(dc
 
     hand_ft_pub_org_ = dc_.nh.advertise<std_msgs::Float32MultiArray>("/tocabi/handft_raw", 100);
 
+    ft_sensor_pub_ = dc_.nh.advertise<tocabi_msgs::yhFTsensor>("/tocabi/ft_sensor", 1);
+
     com_status_msg_.data.resize(17);
-    point_pub_msg_.polygon.points.resize(24);
+    point_pub_msg_.polygon.points.resize(26);
     syspub_msg.data.resize(8);
     elmo_status_msg_.data.resize(MODEL_DOF * 3);
     hand_ft_msg_.data.resize(12);
@@ -2449,6 +2451,17 @@ void StateManager::PublishData()
     point_pub_msg_.polygon.points[23].y = rd_.imu_lin_acc(1);
     point_pub_msg_.polygon.points[23].z = rd_.imu_lin_acc(2);
 
+    // hand orientation
+    DyrosMath::rot2Euler_tf2(link_[Right_Hand].rotm, tr_, tp_, ty_);
+    point_pub_msg_.polygon.points[24].x = tr_;
+    point_pub_msg_.polygon.points[24].y = tp_;
+    point_pub_msg_.polygon.points[24].z = ty_;
+
+    DyrosMath::rot2Euler_tf2(link_[Left_Hand].rotm, tr_, tp_, ty_);
+    point_pub_msg_.polygon.points[25].x = tr_;
+    point_pub_msg_.polygon.points[25].y = tp_;
+    point_pub_msg_.polygon.points[25].z = ty_;
+
     // com_pos_before = link_[COM_id].xpos(1);
 
     point_pub_.publish(point_pub_msg_);
@@ -2621,12 +2634,19 @@ void StateManager::PublishData()
     //
     // memcpy(joint_state_before_, joint_state_, sizeof(int) * MODEL_DOF);
 
+    ft_sensor_msg_.header.stamp = ros::Time::now();
     for (int i = 0; i < 6; i++)
     {
         hand_ft_org_msg_.data[i] = LH_FT[i];
         hand_ft_org_msg_.data[i + 6] = RH_FT[i];
+
+        ft_sensor_msg_.left_raw[i] = LH_FT[i];
+        ft_sensor_msg_.right_raw[i] = RH_FT[i];
+        ft_sensor_msg_.left_global[i] = LH_CF_FT[i];
+        ft_sensor_msg_.right_global[i] = RH_CF_FT[i];
     }
     hand_ft_pub_org_.publish(hand_ft_org_msg_);
+    ft_sensor_pub_.publish(ft_sensor_msg_);
 }
 
 void StateManager::handrcurrentCallback(const std_msgs::Int16MultiArrayConstPtr &msg)
