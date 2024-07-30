@@ -130,16 +130,28 @@ void SYhandController::kinematicsCalculation_RHand(float actuator_values[], floa
 void SYhandController::hand_open_callback(const std_msgs::Int32ConstPtr &msg){
     std::cout << (msg->data ? "close" : "open") << std::endl;
 
-    float sin_d = 0.027 + 0.01*msg->data;
+    float sin_d = 0.027 + 0.011*msg->data;
     float aa_value = 0.3*msg->data;
 
     std::cout << sin_d << " " << aa_value << std::endl;
-    float Actuator_values[] = {aa_value*2, sin_d, aa_value*2, sin_d, 0.0, sin_d, -aa_value*2, sin_d};
+    float Actuator_values[] = {0.0, sin_d, aa_value*2, sin_d, 0.0, sin_d, 0.0, sin_d};
+    // float Actuator_values[] = {aa_value*2, sin_d, aa_value*2, sin_d, 0.0, sin_d, -aa_value*2, sin_d};
     float hand_command[HAND_DOF];
     kinematicsCalculation_RHand(Actuator_values, hand_command);
 
     print_array(hand_command, HAND_DOF);
-    std::copy(hand_command, hand_command + HAND_DOF, shm_msgs_->handCommand);
+
+    float hand_init[HAND_DOF];
+    std::copy(shm_msgs_->handCommand, shm_msgs_->handCommand + HAND_DOF, hand_init);
+    ros::Time init = ros::Time::now();
+    double t;
+    do{
+        t = (ros::Time::now()-init).toSec();
+        for(int i = 0; i < HAND_DOF; i++){
+            shm_msgs_->handCommand[i] = DyrosMath::cubic(t, 0.0, 0.5, hand_init[i], hand_command[i], 0.0, 0.0);
+        }
+    }
+    while(t < 0.5);
 }
 
 int main(int argc, char **argv)
