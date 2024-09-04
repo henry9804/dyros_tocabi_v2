@@ -346,8 +346,8 @@
                                                         <geom size="0.03 0.03 0.01" pos="0 0 -0.025" type="box" class="cls" />
                                                         <geom size="0.03 0.03 0.01" pos="0 0 -0.025" type="box" class="viz" rgba="0.20313 0.20313 0.20313 1" />
                                                         <site class="FTsensor" name="RH_FT" pos="0 0 -0.035"/>
-                                                        <!-- for sh hand -->
-                                                        <body name="R_Wrist_2_Hand_Virtual_Link" pos="0 0 -0.035" quat="0.5 -0.5 -0.5 0.5">
+                                                        <!-- for sy hand -->
+                                                        <body name="R_Wrist_2_Hand_Virtual_Link" pos="0 0 -0.035" quat="0.7071068 -0.7071068 0 0">
                                                             <include file="syhand_right.xml"/>
                                                         </body>
                                                     </body>
@@ -364,10 +364,10 @@
         </body>
 
         <body name="cup">
-            <!-- <geom size="0.05 0.1" pos="0.55 0.05 1.01" type="cylinder" rgba="0 0 1 1"/> -->
-            <!-- <geom size="0.05 0.05 0.1" pos="0.55 -0.05 1.01" euler="0 0 0.7854" type="box" rgba="1 0 0 1"/> -->
             <geom size="0.04 0.05 0.0025" type="box" pos="0.55 0.05 0.9025" rgba="1 1 1 0.5"/>
-            <geom type="mesh" mesh="mustard" pos="0.55 0.05 0.985" euler="0 0 1.5708" rgba="1 1 0 1"/>
+            <!-- <geom size="0.05 0.05 0.1" pos="0.55 -0.05 1.01" type="box" rgba="1 0 0 1"/> -->
+            <geom size="0.05 0.1" pos="0.55 0.05 1.01" type="cylinder" rgba="0 0 1 1"/>
+            <!-- <geom type="mesh" mesh="mustard" pos="0.55 0.05 0.985" euler="0 0 1.5708" rgba="1 1 0 1"/> -->
             <joint name="obj_vjoint_0" type="free"/>
         </body>
        
@@ -463,7 +463,7 @@
 								-0.3 -0.3 -1.5 1.27 1 0 1 0"
                                 /-->
 
-        <!-- <key name="front" time="0" qpos ="0 0 0.92983 1 0 0 0
+        <key name="front" time="0" qpos ="0 0 0.92983 1 0 0 0
                                 0.0 0.0 -0.24 0.6 -0.36 0.0 
 								0.0 0.0 -0.24 0.6 -0.36 0.0
 								0.0 0.0 0.0
@@ -474,7 +474,7 @@
                                 0 0 0 0 0
                                 0 0 0 0 0
                                 0 0 0 0 0
-                                "/> -->
+                                0 0 0 1 0 0 0"/>
 
         <!-- <key name="side" time="0" qpos ="0  0  0.92683  0.8660254  0  0  0.5 
 								0.0   0.1  -0.45  1.0  -0.55 -0.1 

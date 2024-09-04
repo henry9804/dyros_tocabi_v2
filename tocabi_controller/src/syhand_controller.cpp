@@ -9,7 +9,7 @@ void print_array(float* arr, int len){
 }
 
 SYhandController::SYhandController(ros::NodeHandle nh_){
-    std::cout << "initiate sh hand controller" << std::endl;
+    std::cout << "initiate sy hand controller" << std::endl;
     
     // hand_state_pub = nh_.advertise<sensor_msgs::JointState>("/tocabi/handstates", 1);
     hand_open_sub = nh_.subscribe<std_msgs::Int32>("/mujoco_ros_interface/hand_open", 1, &SYhandController::hand_open_callback, this);
