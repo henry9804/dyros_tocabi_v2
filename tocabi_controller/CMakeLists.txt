@@ -56,6 +56,7 @@ IF(tocabi_cc_FOUND)
    ADD_DEFINITIONS(-DCOMPILE_TOCABI_CC)
    find_package(OpenCV REQUIRED)
    include_directories(${OpenCV_INCLUDE_DIRS})
+   find_package(OsqpEigen REQUIRED)
 ENDIF()
 
 IF(tocabi_avatar_FOUND)
@@ -104,6 +105,7 @@ target_link_libraries(${PROJECT_NAME}_lib
   ${tocabi_cc_LIBRARIES}
   ${tocabi_avatar_LIBRARIES}
   -lpthread
+  OsqpEigen::OsqpEigen
 )
 
 ## Specify libraries to link a library or executable target against
